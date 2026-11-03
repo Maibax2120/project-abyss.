@@ -7,7 +7,6 @@
  */
 package com.shatteredpixel.shatteredpixeldungeon.levels;
 
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 
 /**
  * An isolated development floor. It uses the inherited room generator and
