@@ -934,7 +934,8 @@ public class Badges {
 	}
 	
 	public static void validateMastery() {
-		
+		if (Dungeon.hero.heroClass == com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass.DEBUG) return;
+
 		Badge badge = null;
 		switch (Dungeon.hero.heroClass) {
 			case WARRIOR:
