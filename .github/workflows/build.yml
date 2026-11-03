@@ -26,12 +26,17 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build desktop release JAR
         run: ./gradlew --no-daemon desktop:release
+
+      - name: Build desktop debug JAR
+        run: ./gradlew --no-daemon desktop:debugRelease
 
       - name: Assemble Android debug APK
         run: ./gradlew --no-daemon android:assembleDebug
