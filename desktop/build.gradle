@@ -44,6 +44,22 @@ tasks.register('release', Jar) {
         attributes 'Implementation-Version': appVersionCode
     }
 }
+tasks.register('debugRelease', Jar) {
+    setDuplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    archiveClassifier = 'debug'
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from { configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) } }
+
+    manifest {
+        attributes 'Main-Class': appMainClass
+        attributes 'Specification-Title': appName
+        attributes 'Implementation-Title': appPackageName
+        attributes 'Specification-Version': appVersionName + '-INDEV'
+        attributes 'Implementation-Version': appVersionCode
+    }
+}
+
 installDist.dependsOn release
 startScripts.dependsOn release
 jpackageImage.dependsOn release
