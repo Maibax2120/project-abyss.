@@ -23,7 +23,7 @@
 - [x] Fork detected and readable through the connected GitHub account.
 - [x] Dedicated branch `project-abyss-dev` created from `master`.
 - [x] Initial architecture and sprint documentation committed.
-- [ ] Desktop build executed and verified.
+- [ ] Desktop build executed and verified.\n- [x] GitHub Actions workflow added for desktop JAR + Android debug APK builds (execution not yet verified).
 - [ ] Android build executed and verified.
 - [x] Initial unique application/package identifier selected (`com.maibax2120.projectabyss`; can be revised later).
 - [x] Base application metadata changed in root `build.gradle` (name, application ID, development version).\n- [ ] Title-screen artwork, icons, credits and service branding migrated.
