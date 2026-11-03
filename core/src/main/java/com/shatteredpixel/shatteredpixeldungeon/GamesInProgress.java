@@ -73,7 +73,8 @@ public class GamesInProgress {
 	
 	public static int firstEmpty(){
 		for (int i = 1; i <= MAX_SLOTS; i++){
-			if (check(i) == null) return i;
+			Info info = check(i);
+			if (info == null || (!AbyssDebug.isEnabled() && info.heroClass == HeroClass.DEBUG)) return i;
 		}
 		return -1;
 	}
