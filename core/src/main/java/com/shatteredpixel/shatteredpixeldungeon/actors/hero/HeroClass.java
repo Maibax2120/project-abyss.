@@ -47,6 +47,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.En
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.HeroicLeap;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.Shockwave;
 import com.shatteredpixel.shatteredpixeldungeon.items.BrokenSeal;
+import com.shatteredpixel.shatteredpixeldungeon.items.DebugToolkit;
+import com.shatteredpixel.shatteredpixeldungeon.systems.abyss.AbyssDebug;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.Waterskin;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClothArmor;
@@ -89,7 +91,8 @@ public enum HeroClass {
 	ROGUE( HeroSubClass.ASSASSIN, HeroSubClass.FREERUNNER ),
 	HUNTRESS( HeroSubClass.SNIPER, HeroSubClass.WARDEN ),
 	DUELIST( HeroSubClass.CHAMPION, HeroSubClass.MONK ),
-	CLERIC( HeroSubClass.PRIEST, HeroSubClass.PALADIN );
+	CLERIC( HeroSubClass.PRIEST, HeroSubClass.PALADIN ),
+	DEBUG( HeroSubClass.BERSERKER, HeroSubClass.GLADIATOR );
 
 	private HeroSubClass[] subClasses;
 
@@ -139,6 +142,11 @@ public enum HeroClass {
 
 			case CLERIC:
 				initCleric( hero );
+				break;
+
+			case DEBUG:
+				initWarrior( hero );
+				if (AbyssDebug.isEnabled()) new DebugToolkit().collect();
 				break;
 		}
 
@@ -261,14 +269,17 @@ public enum HeroClass {
 	}
 
 	public String title() {
+		if (this == DEBUG) return "Debug Character";
 		return Messages.get(HeroClass.class, name());
 	}
 
 	public String desc(){
+		if (this == DEBUG) return "Developer-only character for testing items, enemies and systems.";
 		return Messages.get(HeroClass.class, name()+"_desc");
 	}
 
 	public String shortDesc(){
+		if (this == DEBUG) return "Debug build test character";
 		return Messages.get(HeroClass.class, name()+"_desc_short");
 	}
 
@@ -328,6 +339,7 @@ public enum HeroClass {
 	}
 	
 	public boolean isUnlocked(){
+		if (this == DEBUG) return AbyssDebug.isEnabled();
 		//always unlock on debug builds
 		if (DeviceCompat.isDebug()) return true;
 
