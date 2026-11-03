@@ -24,6 +24,7 @@ package com.shatteredpixel.shatteredpixeldungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.systems.abyss.AbyssDebug;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 
@@ -81,7 +82,7 @@ public class GamesInProgress {
 		ArrayList<Info> result = new ArrayList<>();
 		for (int i = 1; i <= MAX_SLOTS; i++){
 			Info curr = check(i);
-			if (curr != null) result.add(curr);
+			if (curr != null && (AbyssDebug.isEnabled() || curr.heroClass != HeroClass.DEBUG)) result.add(curr);
 		}
 		switch (SPDSettings.gamesInProgressSort()){
 			case "level": default:
