@@ -100,7 +100,6 @@ public class DebugToolkit extends Item {
                 if (!item.collect()) {
                     Dungeon.level.drop(item, hero.pos).sprite.drop(hero.pos);
                 }
-                GameScene.updateScene();
             }
         });
     }
