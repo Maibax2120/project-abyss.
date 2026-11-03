@@ -193,6 +193,7 @@ public class HeroSelectScene extends PixelScene {
 		add(infoButton);
 
 		for (HeroClass cl : HeroClass.values()){
+			if (cl == HeroClass.DEBUG && !DeviceCompat.isDebug()) continue;
 			HeroBtn button = new HeroBtn(cl);
 			add(button);
 			heroBtns.add(button);
