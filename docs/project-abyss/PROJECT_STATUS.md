@@ -25,8 +25,8 @@
 - [x] Initial architecture and sprint documentation committed.
 - [ ] Desktop build executed and verified.
 - [ ] Android build executed and verified.
-- [ ] Unique application/package identifier selected.
-- [ ] Branding and application metadata migrated.
+- [x] Initial unique application/package identifier selected (`com.maibax2120.projectabyss`; can be revised later).
+- [x] Base application metadata changed in root `build.gradle` (name, application ID, development version).\n- [ ] Title-screen artwork, icons, credits and service branding migrated.
 
 ## Important technical note
 
